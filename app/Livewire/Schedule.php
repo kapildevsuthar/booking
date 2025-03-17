@@ -48,7 +48,7 @@ class Schedule extends Component{
          Sc::updateOrCreate(['firm_id'=>$findfirm[0]->firm_id],$info);
 
         }else{
-
+     
           Sc::create($info);
             
            }
