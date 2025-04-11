@@ -20,8 +20,9 @@
             </tr>
         </thead>
         <tbody>
+            
             @foreach($allschedule as $info)
-            <tr>
+            <tr   wire:key="schedule-{{$info['id']}}">
                 <th class="border p-2">{{$loop->iteration}}</th>
                 <th class="border p-2">{{$info['week']}}</th>
                 <th class="border p-2">{{$info['shift']}}</th>
@@ -41,7 +42,7 @@
             @endif
         </tbody>
     </table>
-    @endif
+    @endif  
     @if($isModalOpen)
 
     @include('firm.schedule')

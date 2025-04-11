@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FirmController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScheduleController;
-
+use App\Http\Controllers\UserInterface;
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,10 +18,13 @@ Route::get('/', function () {
     
 
 Route::middleware(['auth'])->group(function () {
-    Route::resource('firm',FirmController::class)->middleware(SP::class);
-    Route::post('firm/updateprofilepic',[FirmController::class,'updateprofilepic'])->middleware(SP::class);
-    
-    Route::resource('/schedule',ScheduleController::class)->middleware(SP::class);
+
+
+  Route::get('/show',[UserInterface::class,'show']);
+  Route::resource('/firm',FirmController::class)->middleware(SP::class);
+  Route::patch('firm/mapupdate/{id}', [FirmController::class, 'mapupdate'])->middleware(SP::class);
+  Route::post('firm/updateprofilepic',[FirmController::class,'updateprofilepic'])->middleware(SP::class);
+  Route::resource('/schedule',ScheduleController::class)->middleware(SP::class);
 
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -36,7 +39,7 @@ Route::get('/dashboard',function(){
     // dd($user->getRoleNames());
    switch($user->getRoleNames()[0]){
     case 'admin': return "ye admin wala hai";
-    case 'client': return "ye client wala hai";
+    case 'client':return app(UserInterface::class)->show();
     case 'service_provider':
        
         if (count($user->firm)>0)
@@ -47,22 +50,7 @@ Route::get('/dashboard',function(){
 
 })->middleware('auth')->name('dashboard');
 
-//     Route::middleware(['auth','role:service_provider'])->group(function(){
 
-// Route::get('/firm/create',[FirmController::class,'create'])->name('dashboard');
-
-// });
-    
-// Route::middleware(['auth','role:service_provider'])->group(function(){
-
-// Route::get('/firm/create',[FirmController::class,'create'])->name('dashboard');
-
-// });
-// Route::middleware(['auth','role:client'])->group(function(){
-
-//     Route::get('/firm',[FirmController::class,'index'])->name('dashboard');
-    
-//     });
         
     
 

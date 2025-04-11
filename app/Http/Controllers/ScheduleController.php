@@ -63,7 +63,7 @@ class ScheduleController extends Controller
      */
     public function edit(Schedule $schedule)
     {
-        //
+        
     }
 
     /**

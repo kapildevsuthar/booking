@@ -55,13 +55,21 @@ class FirmController extends Controller
             ];
             Firm::create($info);
     }
+    public function mapupdate(string $id){
+        // dd($id);
+        $frm=Firm::find($id);
+        $frm->latitude=request('latitude');
+        $frm->longitude=request('longitude');
+        $frm->save();
+         return redirect("/firm");
+    }
 
     /**
      * Display the specified resource.
      */
     public function show(Firm $firm)
     {
-        //
+        // return "this is view";
     }
 
     /**
@@ -69,15 +77,52 @@ class FirmController extends Controller
      */
     public function edit(Firm $firm)
     {
-        //
+        // echo "this is edit page";
+        $firms = Firm::all(); 
+        return view('firm.edit', compact('firm', 'firms'));
     }
+    
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Firm $firm)
     {
-        //
+        
+        $request->validate([
+            'firm_name' => 'required|string|unique:firms,firm_name,' . $firm->id,
+            'firm_mobile' => 'required|digits:10',
+            'pincode' => 'required|digits:6',
+            'since' => 'required|date',
+            'street' => 'nullable|string',
+            'landmark' => 'nullable|string',
+            'address' => 'required|string',
+            'city' => 'required|string',
+            'state' => 'required|string',
+            'country' => 'required|string',
+            'pan_no' => 'required|string',
+            'register_no' => 'nullable|string',
+            'gst_no' => 'nullable|string',
+        ]);
+    
+        
+        $firm->update([
+            'firm_name' => $request->firm_name,
+            'firm_mobile' => $request->firm_mobile,
+            'pincode' => $request->pincode,
+            'since' => $request->since,
+            'street' => $request->street,
+            'landmark' => $request->landmark,
+            'address' => $request->address,
+            'city' => $request->city,
+            'state' => $request->state,
+            'country' => $request->country,
+            'pan_no' => $request->pan_no,
+            'register_no' => $request->register_no,
+            'gst_no' => $request->gst_no,
+        ]);
+    
+        return redirect("/firm")->with("data updated successfully");
     }
 
     /**
