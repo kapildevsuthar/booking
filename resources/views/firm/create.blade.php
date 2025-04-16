@@ -14,6 +14,10 @@
                                 <label class="form-label fw-bold">Firm Name <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" name="firm_name" placeholder="--Firm Name--" required>
                             </div>
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Firm Category <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="category" placeholder="--Firm Category--" required>
+                            </div>
     
                             <!-- Mobile Number -->
                             <div class="mb-3">
@@ -94,6 +98,10 @@
                                   <label class="form-label fw-bold">Register No</label>
                                   <input type="text" class="form-control" name="register_no" placeholder="Enter Registration Number">
                              </div>
+                             <div class="mb-3">
+                                <label class="form-label fw-bold">About us: <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="about_us" placeholder="--About us:--" required>
+                            </div>
     
                               <!-- Map -->
                               {{-- <div class="mb-3">

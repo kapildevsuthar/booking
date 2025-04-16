@@ -19,7 +19,9 @@ class UserInterface extends Controller
                 $q->where('firm_name','like', "%$keyword%")
                   ->orWhere('firm_mobile','like', "%$keyword%")
                   ->orWhere('pincode','like', "%$keyword%")
-                  ->orWhere('address','like', "%$keyword%");
+                  ->orWhere('address','like', "%$keyword%")
+                  ->orWhere('category','like', "%$keyword%")
+                  ->orWhere('about_us','like', "%$keyword%");;
          });
         })->get();
         // dd($keyword);

@@ -38,6 +38,7 @@ class FirmController extends Controller
         $info=[
             'user_id'=>Auth::user()->id,
             'firm_name'=>$request->firm_name,
+            'category'=>$request->category,
             'firm_mobile'=>$request->firm_mobile,
             'pincode'=>$request->pincode,
             'since'=>$request->since,
@@ -51,6 +52,7 @@ class FirmController extends Controller
             //  'map'=>$request->map,
              'register_no'=>$request->register_no,
              'gst_no'=>$request->gst_no,
+             'about_us'=>$request->about_us,
             //  'profilepic'=>$request->profilepic
             ];
             Firm::create($info);
@@ -91,6 +93,7 @@ class FirmController extends Controller
         
         $request->validate([
             'firm_name' => 'required|string|unique:firms,firm_name,' . $firm->id,
+            'category' => 'required|string',
             'firm_mobile' => 'required|digits:10',
             'pincode' => 'required|digits:6',
             'since' => 'required|date',
@@ -103,12 +106,14 @@ class FirmController extends Controller
             'pan_no' => 'required|string',
             'register_no' => 'nullable|string',
             'gst_no' => 'nullable|string',
+            'about_us' => 'required|string',
         ]);
     
         
         $firm->update([
             'firm_name' => $request->firm_name,
             'firm_mobile' => $request->firm_mobile,
+            'category'=>$request->category,
             'pincode' => $request->pincode,
             'since' => $request->since,
             'street' => $request->street,
@@ -120,6 +125,7 @@ class FirmController extends Controller
             'pan_no' => $request->pan_no,
             'register_no' => $request->register_no,
             'gst_no' => $request->gst_no,
+            'about_us'=>$request->about_us,
         ]);
     
         return redirect("/firm")->with("data updated successfully");

@@ -54,9 +54,11 @@
                                         {{ $firm['street'] }}, {{ $firm['landmark'] }}, {{ $firm['city'] }},
                                         {{ $firm['state'] }}, {{ $firm['country'] }}</p>
                                     <p><strong>Since:</strong> {{ $firm['since'] }}</p>
+                                    <p><strong>Firm Category:</strong> {{ $firm['category'] }}</p>
                                     <p><strong>PAN No:</strong> {{ $firm['pan_no'] }}</p>
                                     <p><strong>GST No:</strong> {{ $firm['gst_no'] }}</p>
                                     <p><strong>Register No:</strong> {{ $firm['register_no'] }}</p>
+                                    <p><strong>About us:</strong> {{ $firm['about_us'] }}</p>
                                 </div>
                                 <button class="btn btn-primary position-absolute top-0 end-0 m-2">
                                     <a href="{{ route('firm.edit', $firm->id) }}" class="text-white text-decoration-none">Edit</a>

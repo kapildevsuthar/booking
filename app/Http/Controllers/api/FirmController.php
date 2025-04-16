@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\api;
 
-use App\Http\Controllers\Controller;
+use App\Models\Firm;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class FirmController extends Controller
 {
@@ -12,7 +14,7 @@ class FirmController extends Controller
      */
     public function index()
     {
-        return response(['data'=>"i am calling"],200);
+        return response(['data'=>Firm::all()],200);
     }
 
     /**
@@ -20,7 +22,7 @@ class FirmController extends Controller
      */
     public function create()
     {
-        //
+        // 
     }
 
     /**
@@ -28,7 +30,27 @@ class FirmController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $info=[
+            'user_id'=>4,
+            'firm_name'=>$request->firm_name,
+            'firm_mobile'=>$request->firm_mobile,
+            'pincode'=>$request->pincode,
+            'since'=>$request->since,
+            'street'=>$request->street,
+            'landmark'=>$request->landmark,
+             'address'=>$request->address,
+             'city'=>$request->city,
+             'state'=>$request->state,
+             'country'=>$request->country,
+             'pan_no'=>$request->pan_no,
+            //  'map'=>$request->map,
+             'register_no'=>$request->register_no,
+             'gst_no'=>$request->gst_no,
+            //  'profilepic'=>$request->profilepic
+            ];
+            Firm::create($info);
+            return response(['data'=>"done"],200);
+    
     }
 
     /**
